@@ -43,7 +43,6 @@ public class jogo extends javax.swing.JFrame {
         btn8 = new javax.swing.JButton();
         btn9 = new javax.swing.JButton();
         txtVisor = new javax.swing.JLabel();
-        btnReiniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Jogo da velha"); // NOI18N
@@ -118,13 +117,6 @@ public class jogo extends javax.swing.JFrame {
         txtVisor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtVisor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        btnReiniciar.setText("Reiniciar Partida");
-        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReiniciarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,10 +148,6 @@ public class jogo extends javax.swing.JFrame {
                         .addGap(0, 8, Short.MAX_VALUE))
                     .addComponent(txtVisor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(btnReiniciar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,9 +171,7 @@ public class jogo extends javax.swing.JFrame {
                     .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtVisor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnReiniciar)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -369,11 +355,10 @@ public class jogo extends javax.swing.JFrame {
     public void VerificaEmpate(){
         for(int i = 0; i > 3; i++){
           for(int j = 0; j > 3; j++){
-             if(posicaoVetor[i][j].equals("X") | posicaoVetor[i][j].equals("O")){
+             if(posicaoVetor[i][j].equals("X") || posicaoVetor[i][j].equals("O")){
                  contaPosicao = contaPosicao + 1;
              }
-          }
-            
+          }   
         }
     }
     
@@ -386,48 +371,31 @@ public class jogo extends javax.swing.JFrame {
         coluna3 = posicaoVetor[0][2]+posicaoVetor[1][2]+posicaoVetor[2][2];
         diagonal1 = posicaoVetor[0][0]+posicaoVetor[1][1]+posicaoVetor[2][2];
         diagonal2 = posicaoVetor[0][2]+posicaoVetor[1][1]+posicaoVetor[2][0];
-        System.out.println(contaPosicao);
+
         if(linha1.equals("XXX") || linha2.equals("XXX") || linha3.equals("XXX") || coluna1.equals("XXX") || coluna2.equals("XXX") || coluna3.equals("XXX") || diagonal1.equals("XXX") || diagonal2.equals("XXX")){
             txtVisor.setText("O jogador X foi o vencedor!!");
             limparVetor();
             destivaBotoes();
+            VerificaEmpate();
+             System.out.println(contaPosicao);
         }
         
         else if(linha1.equals("OOO") || linha2.equals("OOO") || linha3.equals("OOO") || coluna1.equals("OOO") || coluna2.equals("OOO") || coluna3.equals("OOO") || diagonal1.equals("OOO") || diagonal2.equals("OOO")){
            txtVisor.setText("O jogador O foi o vencedor!!");
            limparVetor();
            destivaBotoes();
+           VerificaEmpate();
+            System.out.println(contaPosicao);
         }
-        else if(contaPosicoes == 9){
+        else if(linha1 != "OOO" && linha2!=("OOO") && linha3 !="OOO" && coluna1 !="OOO" && coluna2 !="OOO" && coluna3 !="OOO" && diagonal1 !="OOO" && diagonal2 != "OOO" &&
+                linha1 != "XXX" && linha2 != "XXX" && linha3 != "XXX" && coluna1 != "XXX" && coluna2 != "XXX" && coluna3 != "XXX" && diagonal1 != "XXX" && diagonal2 != "XXX"
+                ){
             txtVisor.setText("A partida terminou em empate");
+            VerificaEmpate();
+             System.out.println(contaPosicao);
         }
     }  
     
-    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
-        btn1.setText("");
-        btn1.setEnabled(true);
-        btn2.setText("");
-        btn2.setEnabled(true);
-        btn3.setText("");
-        btn3.setEnabled(true);
-        btn4.setText("");
-        btn4.setEnabled(true);
-        btn5.setText("");
-        btn5.setEnabled(true);
-        btn6.setText("");
-        btn6.setEnabled(true);
-        btn7.setText("");
-        btn7.setEnabled(true);
-        btn8.setText("");
-        btn8.setEnabled(true);
-        btn9.setText("");
-        btn9.setEnabled(true);
-        jogadorUm = true;
-        jogadorDois = true;
-        txtVisor.setText("");
-        limparVetor();
-    }//GEN-LAST:event_btnReiniciarActionPerformed
-
     public void limparVetor(){
         for(int i = 0; i > 3; i++){
             for(int j = 0; j > 3; j++){
@@ -481,7 +449,6 @@ public class jogo extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
-    private javax.swing.JButton btnReiniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel txtVisor;
     // End of variables declaration//GEN-END:variables
