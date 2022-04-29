@@ -209,7 +209,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn1.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn1ActionPerformed
 
@@ -224,7 +223,6 @@ public class jogo extends javax.swing.JFrame {
             posicaoVetor[0][1]="O";  
         }
         btn2.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn2ActionPerformed
 
@@ -240,7 +238,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn3.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn3ActionPerformed
 
@@ -256,7 +253,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn4.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn4ActionPerformed
 
@@ -272,7 +268,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn5.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn5ActionPerformed
 
@@ -288,7 +283,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn6.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn6ActionPerformed
 
@@ -304,7 +298,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn7.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn7ActionPerformed
 
@@ -320,7 +313,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn8.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn8ActionPerformed
 
@@ -336,7 +328,6 @@ public class jogo extends javax.swing.JFrame {
         }
         
         btn9.setEnabled(false);
-        VerificaEmpate();
         verificaGanhador();
     }//GEN-LAST:event_btn9ActionPerformed
 
@@ -352,16 +343,6 @@ public class jogo extends javax.swing.JFrame {
         btn9.setEnabled(false);
     }
     
-    public void VerificaEmpate(){
-        for(int i = 0; i > 3; i++){
-          for(int j = 0; j > 3; j++){
-             if(posicaoVetor[i][j].equals("X") || posicaoVetor[i][j].equals("O")){
-                 contaPosicao = contaPosicao + 1;
-             }
-          }   
-        }
-    }
-    
     public void verificaGanhador(){
         linha1 = posicaoVetor[0][0]+posicaoVetor[0][1]+posicaoVetor[0][2];
         linha2 = posicaoVetor[1][0]+posicaoVetor[1][1]+posicaoVetor[1][2];
@@ -374,35 +355,22 @@ public class jogo extends javax.swing.JFrame {
 
         if(linha1.equals("XXX") || linha2.equals("XXX") || linha3.equals("XXX") || coluna1.equals("XXX") || coluna2.equals("XXX") || coluna3.equals("XXX") || diagonal1.equals("XXX") || diagonal2.equals("XXX")){
             txtVisor.setText("O jogador X foi o vencedor!!");
-            limparVetor();
             destivaBotoes();
-            VerificaEmpate();
              System.out.println(contaPosicao);
         }
         
         else if(linha1.equals("OOO") || linha2.equals("OOO") || linha3.equals("OOO") || coluna1.equals("OOO") || coluna2.equals("OOO") || coluna3.equals("OOO") || diagonal1.equals("OOO") || diagonal2.equals("OOO")){
            txtVisor.setText("O jogador O foi o vencedor!!");
-           limparVetor();
            destivaBotoes();
-           VerificaEmpate();
             System.out.println(contaPosicao);
         }
         else if(linha1 != "OOO" && linha2!=("OOO") && linha3 !="OOO" && coluna1 !="OOO" && coluna2 !="OOO" && coluna3 !="OOO" && diagonal1 !="OOO" && diagonal2 != "OOO" &&
                 linha1 != "XXX" && linha2 != "XXX" && linha3 != "XXX" && coluna1 != "XXX" && coluna2 != "XXX" && coluna3 != "XXX" && diagonal1 != "XXX" && diagonal2 != "XXX"
                 ){
             txtVisor.setText("A partida terminou em empate");
-            VerificaEmpate();
              System.out.println(contaPosicao);
         }
     }  
-    
-    public void limparVetor(){
-        for(int i = 0; i > 3; i++){
-            for(int j = 0; j > 3; j++){
-                posicaoVetor[i][j] = "";
-            }  
-        }
-    }
     /**
      * @param args the command line arguments
      */
